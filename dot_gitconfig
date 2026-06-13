@@ -1,0 +1,5 @@
+[user]
+	name = Shuhei Nitta
+	email = shuheinitta.dev@gmail.com
+[core]
+	editor = nvim
