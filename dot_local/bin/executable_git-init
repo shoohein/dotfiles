@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+git init
+git config user.name "$(git config --global --get user.name)"
+git config user.email "$(git config --global --get user.email)"
+cat >> .git/info/exclude << 'EOF'
+.env
+TODO.md
+TODO_*.md
+.claude/
+.agent/
+.opencode/
+opencode.json
+opencode.jsonc
+.vscode/
+devcontainer-lock.json
+EOF
+
