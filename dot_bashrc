@@ -121,3 +121,11 @@ if [ -d "$HOME/.local/bin" ]; then
     export PATH="$HOME/.local/bin:$PATH"
 fi
 
+# Show git branch status in prompt
+if [ -f /usr/lib/git-core/git-sh-prompt ]; then
+    source /usr/lib/git-core/git-sh-prompt
+    export GIT_PS1_SHOWDIRTYSTATE=1
+    export GIT_PS1_SHOWUNTRACKEDFILES=1
+    export GIT_PS1_SHOWUPSTREAM="auto"
+    PS1="${PS1//\\$/\\[\\033[01;31m\\]\$(__git_ps1 \"(%s)\")\\[\\033[00m\\]\\$}"
+fi
