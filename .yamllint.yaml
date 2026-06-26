@@ -1,6 +1,4 @@
----
 extends: default
-
 rules:
   line-length:
     max: 120
@@ -13,6 +11,5 @@ rules:
   comments:
     min-spaces-from-content: 1
   comments-indentation: disable
-
 ignore: |
   .chezmoiignore
