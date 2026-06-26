@@ -1,5 +1,7 @@
 # dotfiles
 
+[![Check](https://github.com/shoohein/dotfiles/actions/workflows/check.yml/badge.svg)](https://github.com/shoohein/dotfiles/actions/workflows/check.yml)
+
 Manages dotfiles using [chezmoi](https://www.chezmoi.io/).
 
 ## Setup
