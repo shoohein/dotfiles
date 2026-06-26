@@ -1,0 +1,50 @@
+name: Check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  pre-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - uses: pre-commit/action@v3.0.1
+
+  gitleaks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  chezmoi-apply:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install chezmoi
+        run: sh -c "$(curl -fsLS get.chezmoi.io)" -- -b "$HOME/.local/bin"
+      - name: Run chezmoi apply (dry-run)
+        run: |
+          export PATH="$HOME/.local/bin:$PATH"
+          TMP_HOME=$(mktemp -d)
+          HOME="$TMP_HOME" chezmoi init --source="$GITHUB_WORKSPACE"
+          HOME="$TMP_HOME" chezmoi apply --dry-run --verbose
+      - name: chezmoi doctor
+        run: |
+          export PATH="$HOME/.local/bin:$PATH"
+          chezmoi doctor || true
