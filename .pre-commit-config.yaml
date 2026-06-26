@@ -1,4 +1,3 @@
----
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v6.0.0
@@ -14,29 +13,24 @@ repos:
       - id: fix-byte-order-marker
       - id: detect-private-key
       - id: forbid-submodules
-
   - repo: https://github.com/shellcheck-py/shellcheck-py
     rev: v0.11.0.1
     hooks:
       - id: shellcheck
-
   - repo: https://github.com/scop/pre-commit-shfmt
     rev: v3.12.0-1
     hooks:
       - id: shfmt
         args: [-i=2, -ci, -sr, -ln=bash, -w]
-
   - repo: https://github.com/google/yamlfmt
     rev: v0.17.2
     hooks:
       - id: yamlfmt
-
   - repo: https://github.com/adrienverge/yamllint
     rev: v1.38.0
     hooks:
       - id: yamllint
         args: [--strict]
-
   - repo: https://github.com/executablebooks/mdformat
     rev: 0.7.22
     hooks:
@@ -44,7 +38,6 @@ repos:
         additional_dependencies:
           - mdformat-gfm
           - mdformat-tables
-
 exclude: |
   (?x)^(
     \.chezmoiignore |
