@@ -1,0 +1,45 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "default_agent": "plan",
+  "lsp": true,
+  "instructions": [
+    "/home/agent/.config/opencode/AGENTS.md",
+    "https://raw.githubusercontent.com/shoohein/opencode-config/refs/heads/main/instructions/critical-thinking.md"
+  ],
+  "small_model": "local-lmstudio/google/gemma-4-12b-qat",
+  "provider": {
+    "local-lmstudio": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "LM Studio (Windows)",
+      "options": {
+        "baseURL": "http://192.168.11.2:1234/v1"
+      },
+      "models": {
+        "google/gemma-4-12b-qat": {
+          "name": "Gemma 4 12b"
+        }
+      }
+    }
+  },
+  "agent": {
+    "doc-reviewer": {
+      "model": "openai/gpt-5.4-mini",
+      "temperature": 0.1
+    },
+    "performance-reviewer": {
+      "model": "openai/gpt-5.4-mini",
+      "temperature": 0.1
+    },
+    "explore": {
+      "model": "opencode/deepseek-v4-flash-free",
+      "temperature": 0.3
+    },
+    "plan": {
+      "model": "opencode/deepseek-v4-flash-free"
+    },
+    "build": {
+      "model": "opencode/deepseek-v4-flash-free",
+      "temperature": 0.1
+    }
+  }
+}
