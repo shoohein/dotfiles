@@ -13,6 +13,8 @@ repos:
       - id: fix-byte-order-marker
       - id: detect-private-key
       - id: forbid-submodules
+      - id: pretty-format-json
+        args: [--autofix, --no-sort-keys, --indent=2]
 
   - repo: https://github.com/shellcheck-py/shellcheck-py
     rev: v0.11.0.1
