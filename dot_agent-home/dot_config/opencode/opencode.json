@@ -4,7 +4,8 @@
   "lsp": true,
   "instructions": [
     "/home/agent/.config/opencode/AGENTS.md",
-    "https://raw.githubusercontent.com/shoohein/opencode-config/refs/heads/main/instructions/critical-thinking.md"
+    "https://raw.githubusercontent.com/shoohein/opencode-config/refs/heads/main/instructions/critical-thinking.md",
+    "https://raw.githubusercontent.com/shoohein/opencode-config/refs/heads/main/instructions/documentation-policy.md"
   ],
   "small_model": "local-lmstudio/google/gemma-4-12b-qat",
   "provider": {
