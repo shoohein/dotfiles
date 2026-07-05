@@ -16,4 +16,5 @@ opencode.json
 opencode.jsonc
 .vscode/
 devcontainer-lock.json
+tasks/
 EOF
