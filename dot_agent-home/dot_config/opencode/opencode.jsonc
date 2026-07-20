@@ -1,0 +1,118 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "default_agent": "plan",
+  "lsp": true,
+  "instructions": [
+    "/home/agent/.config/opencode/AGENTS.md",
+    "https://raw.githubusercontent.com/shoohein/opencode-config/refs/heads/main/instructions/critical-thinking.md",
+    "https://raw.githubusercontent.com/shoohein/opencode-config/refs/heads/main/instructions/documentation-policy.md"
+  ],
+  "model": "opencode-go/deepseek-v4-pro",
+  "small_model": "local-lmstudio/google/gemma-4-12b-qat",
+  "command": {
+    "ok": {
+      "description": "実行を許可する",
+      "template": "お願いします。",
+      "agent": "build"
+    },
+    "write": {
+        "description": "ドキュメントを作成する",
+        "template": "ドキュメントの作成をお願いします。",
+        "agent": "writer"
+    },
+    "commit": {
+      "description": "変更をコミットする",
+      "template": "変更をコミットしてください。",
+      "agent": "general"
+    }
+  },
+  "agent": {
+    "plan": {
+      "model": "opencode-go/deepseek-v4-pro",
+      "temperature": 0.2
+    },
+    "build": {
+      "model": "opencode-go/deepseek-v4-flash",
+      "temperature": 0.0
+    },
+    "explore": {
+      "model": "opencode-go/deepseek-v4-flash",
+      "temperature": 0.3
+    },
+    "general": {
+      "model": "opencode-go/deepseek-v4-pro"
+    },
+    "writer": {
+      "model": "opencode-go/deepseek-v4-pro",
+      "hidden": true
+    },
+    "doc-structure-reviewer": {
+      "mode": "subagent",
+      "model": "openai/gpt-5.4-mini",
+      "temperature": 0.1,
+      "hidden": true
+    },
+    "doc-clarity-reviewer": {
+      "mode": "subagent",
+      "model": "anthropic/claude-sonnet-4-6",
+      "temperature": 0.1,
+      "hidden": true
+    },
+    "doc-completeness-reviewer": {
+      "mode": "subagent",
+      "model": "openai/gpt-5.4-mini",
+      "temperature": 0.1,
+      "hidden": true
+    },
+    "doc-grammar-en-reviewer": {
+      "mode": "subagent",
+      "model": "openai/gpt-5.4-mini",
+      "temperature": 0.1,
+      "hidden": true
+    },
+    "doc-grammar-jp-reviewer": {
+      "mode": "subagent",
+      "model": "openai/gpt-5.4-mini",
+      "temperature": 0.1,
+      "hidden": true
+    },
+    "code-design-reviewer": {
+      "mode": "subagent",
+      "model": "opencode-go/kimi-k2.7-code",
+      "temperature": 0.1,
+      "hidden": true
+    },
+    "code-logic-reviewer": {
+      "mode": "subagent",
+      "model": "openai/gpt-5.4-mini",
+      "temperature": 0.1,
+      "hidden": true
+    },
+    "code-testing-reviewer": {
+      "mode": "subagent",
+      "model": "opencode-go/kimi-k2.7-code",
+      "temperature": 0.1,
+      "hidden": true
+    },
+    "code-security-reviewer": {
+      "mode": "subagent",
+      "model": "openai/gpt-5.4-mini",
+      "temperature": 0.1,
+      "hidden": true
+    }
+  },
+  "provider": {
+    "local-lmstudio": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "LM Studio (Windows)",
+      "options": {
+        "baseURL": "http://100.124.180.22:1234/v1"  // FIXME: hard coded windows ip
+      },
+      "models": {
+        "google/gemma-4-12b-qat": {
+          "name": "Gemma 4 12b"
+        }
+      }
+    }
+  }
+}
