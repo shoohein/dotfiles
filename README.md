@@ -22,12 +22,13 @@ chezmoi init --apply https://github.com/shoohein/dotfiles.git
 
 ### Sync & Apply
 
-| Command          | Description                                    |
-| :--------------- | :--------------------------------------------- |
-| `chezmoi update` | Pull and apply latest remote changes.          |
-| `chezmoi status` | Show pending changes (Source vs. Destination). |
-| `chezmoi diff`   | Show exact differences.                        |
-| `chezmoi apply`  | Apply source state to destination.             |
+| Command                             | Description                                    |
+| :---------------------------------- | :--------------------------------------------- |
+| `chezmoi update`                    | Pull and apply latest remote changes.          |
+| `chezmoi status`                    | Show pending changes (Source vs. Destination). |
+| `chezmoi diff`                      | Show exact differences.                        |
+| `chezmoi apply`                     | Apply source state to destination.             |
+| `chezmoi apply --refresh-externals` | Apply and force-update external repositories.  |
 
 ### Add & Edit
 
