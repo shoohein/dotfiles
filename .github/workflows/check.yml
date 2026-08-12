@@ -33,9 +33,7 @@ jobs:
         run: |
           export PATH="$HOME/.local/bin:$PATH"
           TMP_HOME=$(mktemp -d)
-          mkdir -p "$TMP_HOME/.local/share/chezmoi"
-          HOME="$TMP_HOME" chezmoi init --source="$GITHUB_WORKSPACE"
-          HOME="$TMP_HOME" chezmoi apply --dry-run --verbose
+          chezmoi apply --source="$GITHUB_WORKSPACE" --destination="$TMP_HOME" --dry-run --verbose
       - name: chezmoi doctor
         run: |
           export PATH="$HOME/.local/bin:$PATH"
