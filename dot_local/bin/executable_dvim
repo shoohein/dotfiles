@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+source "${HOME}/.local/lib/devcontainer/common.sh"
+
+devcontainer_require_commands
+workspace="$(devcontainer_workspace_root)"
+workdir="$(devcontainer_workdir "$workspace")"
+
+devcontainer_up "$workspace"
+
+readonly nvim_helper="${HOME}/.local/lib/devcontainer/nvim.sh"
+if ! devcontainer_exec "$workspace" test -x "$nvim_helper"; then
+  printf '%s\n' "dvim: '${nvim_helper}' is unavailable in the dev container." >&2
+  printf '%s\n' 'dvim: recreate the container so the dotfiles install command can apply it.' >&2
+  exit 1
+fi
+
+if [ "$#" -eq 0 ]; then
+  set -- .
+fi
+
+exec devcontainer_exec "$workspace" "$nvim_helper" "$workdir" -- "$@"
