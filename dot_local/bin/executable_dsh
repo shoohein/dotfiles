@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+source "${HOME}/.local/lib/devcontainer/common.sh"
+
+devcontainer_require_commands
+workspace="$(devcontainer_workspace_root)"
+workdir="$(devcontainer_workdir "$workspace")"
+
+devcontainer_up "$workspace"
+
+devcontainer_run shell "$workspace" "$workdir"

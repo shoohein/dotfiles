@@ -53,3 +53,21 @@ chezmoi init --apply https://github.com/shoohein/dotfiles.git
 | :--------------------- | :----------------------------------------------------------------- |
 | `chezmoi cd`           | Open shell in source directory.                                    |
 | `chezmoi git -- <cmd>` | Run git in source dir (e.g., `chezmoi git -- commit -m "update"`). |
+
+## Dev Containers
+
+`dvim` starts the Dev Container for the current workspace and opens Neovim in the
+corresponding directory. `dsh` opens an interactive shell in the same location.
+
+```console
+dvim
+dvim README.md
+dsh
+```
+
+Both commands require the Dev Container CLI. `dvim` installs its fixed Neovim
+version on first use in glibc-based `amd64` and `arm64` containers.
+
+`dvim` and `dsh` use the Git root as the Dev Container workspace. Outside a Git
+repository, they use the current directory. Run them from the workspace or one of
+its subdirectories.

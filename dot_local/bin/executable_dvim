@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+source "${HOME}/.local/lib/devcontainer/common.sh"
+
+devcontainer_require_commands
+workspace="$(devcontainer_workspace_root)"
+workdir="$(devcontainer_workdir "$workspace")"
+
+devcontainer_up "$workspace"
+
+if [ "$#" -eq 0 ]; then
+  set -- .
+fi
+
+devcontainer_run nvim "$workspace" "$workdir" -- "$@"
