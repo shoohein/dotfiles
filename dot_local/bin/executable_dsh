@@ -10,14 +10,4 @@ workdir="$(devcontainer_workdir "$workspace")"
 
 devcontainer_up "$workspace"
 
-exec devcontainer_exec "$workspace" sh -c '
-  cd "$1"
-
-  if [ -n "${SHELL:-}" ] && [ -x "$SHELL" ]; then
-    exec "$SHELL" -i
-  elif [ -x /bin/bash ]; then
-    exec /bin/bash -i
-  else
-    exec /bin/sh -i
-  fi
-' sh "$workdir"
+devcontainer_run shell "$workspace" "$workdir"

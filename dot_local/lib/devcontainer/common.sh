@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
-# Shared host-side helpers for commands that enter a Dev Container.
+# Host-side orchestration layer for Dev Container workspace commands.
+# Do not use container $HOME or container-side absolute paths here.
+
+set -euo pipefail
 
 readonly devcontainer_dotfiles_repository='https://github.com/shoohein/dotfiles.git'
 readonly devcontainer_dotfiles_install_command='install.sh'
@@ -56,9 +59,25 @@ devcontainer_up() {
     > /dev/null
 }
 
-devcontainer_exec() {
-  local workspace="$1"
-  shift
+devcontainer_run() {
+  local operation workspace workdir
 
-  devcontainer exec --workspace-folder "$workspace" "$@"
+  operation="$1"
+  workspace="$2"
+  workdir="$3"
+  shift 3
+
+  # shellcheck disable=SC2016
+  exec devcontainer exec --workspace-folder "$workspace" \
+    /bin/sh -c '
+      ep="$HOME/.local/lib/devcontainer/entrypoint.sh"
+      if [ ! -x "$ep" ]; then
+        printf "%s\n" "devcontainer: entrypoint not found in container ($ep)." >&2
+        printf "%s\n" "devcontainer: the dotfiles may not be installed, or the container image is outdated." >&2
+        printf "%s\n" "devcontainer: recreate the container so the dotfiles install command can provision the entrypoint." >&2
+        exit 1
+      fi
+      exec "$ep" "$@"
+    ' sh \
+    "$operation" "$workdir" "$@"
 }
