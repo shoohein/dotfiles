@@ -17,7 +17,7 @@ repos:
         args: [--autofix, --no-sort-keys, --indent=2]
 
   - repo: https://github.com/shellcheck-py/shellcheck-py
-    rev: v0.11.0.1
+    rev: v0.11.0.1-1
     hooks:
       - id: shellcheck
 
@@ -39,12 +39,11 @@ repos:
         args: [--strict]
 
   - repo: https://github.com/executablebooks/mdformat
-    rev: 0.7.22
+    rev: 1.0.0
     hooks:
       - id: mdformat
         additional_dependencies:
           - mdformat-gfm
-          - mdformat-tables
 
 exclude: |
   (?x)^(
