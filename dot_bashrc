@@ -121,3 +121,7 @@ if [ -d ~/.bashrc.d/ ]; then
     fi
   done
 fi
+
+if command -v wslpath >/dev/null 2>&1; then
+  PROMPT_COMMAND=${PROMPT_COMMAND:+"$PROMPT_COMMAND ; "}'printf "\e]9;9;%s\e\\" "$(wslpath -w "$PWD")"'
+fi
