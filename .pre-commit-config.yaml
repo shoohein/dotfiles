@@ -52,7 +52,7 @@ exclude: |
   )$
 
 ci:
-  autofix_commit_msg: "chore: auto-fix pre-commit issues"
+  autofix_commit_msg: "chore(pre-commit): auto-fix pre-commit issues"
   autofix_prs: true
-  autoupdate_commit_msg: "chore: auto-update pre-commit hooks"
+  autoupdate_commit_msg: "chore(pre-commit): auto-update pre-commit hooks"
   autoupdate_schedule: weekly
