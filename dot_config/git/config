@@ -1,0 +1,51 @@
+[user]
+	name = Shuhei Nitta
+	email = shuheinitta.dev@gmail.com
+
+[core]
+	editor = nvim
+	pager = delta
+
+[commit]
+	verbose = true
+
+[diff]
+	algorithm = histogram
+
+[init]
+	defaultBranch = main
+
+[pull]
+	rebase = true
+
+[push]
+	autoSetupRemote = true
+
+[fetch]
+	prune = true
+
+[rebase]
+	autoSquash = true
+	autoStash = true
+	updateRefs = true
+
+[merge]
+	conflictStyle = zdiff3
+
+[interactive]
+	diffFilter = delta --color-only
+
+[delta]
+	navigate = true
+	line-numbers = true
+
+[credential "https://github.com"]
+	helper =
+	helper = !gh auth git-credential
+
+[credential "https://gist.github.com"]
+	helper =
+	helper = !gh auth git-credential
+
+[include]
+	path = ~/.config/git/config.local
