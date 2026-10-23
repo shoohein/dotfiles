@@ -10,6 +10,7 @@ alias gl='git log --oneline --graph --decorate -20'
 alias gr='git rebase --continue'
 alias gp='git push'
 alias gpf='git push --force-with-lease'
+alias lg='lazygit'
 
 # Docker
 alias di='docker image'
