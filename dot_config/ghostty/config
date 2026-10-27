@@ -15,5 +15,5 @@ mouse-hide-while-typing = true
 confirm-close-surface = true
 
 # Transparency toggle (Ctrl+Shift+B)
-background-opacity = 0.85
+background-opacity = 0.8
 keybind = ctrl+shift+b=toggle_background_opacity
