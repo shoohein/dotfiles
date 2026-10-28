@@ -1,3 +1,8 @@
+# Realm directory roots
+export ATLAS_ROOT="${ATLAS_ROOT:-$HOME/atlas}"
+export REPOS_ROOT="${REPOS_ROOT:-$HOME/repos}"
+export WORKTREES_ROOT="${WORKTREES_ROOT:-$HOME/worktrees}"
+
 # Interactive shells only
 case $- in
   *i*) ;;
