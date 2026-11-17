@@ -44,3 +44,9 @@ yazi = "26.9.1"
 yq = "4.54.1"
 zellij = "0.45.1"
 zoxide = "0.10.0"
+
+# elan-init is a multicall binary; rename it and link its tool proxies.
+[tools."github:leanprover/elan"]
+version = "4.2.4"
+rename_exe = "elan"
+postinstall = 'for tool in lean lake leanc leanchecker leanmake leanpkg; do ln -sf elan "$MISE_TOOL_INSTALL_PATH/$tool"; done'
